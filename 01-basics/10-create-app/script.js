@@ -9,7 +9,7 @@ const App = defineComponent({
       month: "long",
       day: "numeric",
     };
-    const formattedDate = date.toLocaleDateString('en-EN', options);
+    const formattedDate = date.toLocaleDateString(navigator.language, options);
 
     return { formattedDate };
   },
