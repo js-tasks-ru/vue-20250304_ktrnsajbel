@@ -1,12 +1,12 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { getWeatherData, WeatherConditionIcons } from './weather.service.ts'
 
 export default defineComponent({
   name: 'WeatherApp',
 
   setup () {
-    const weatherData = ref(getWeatherData());  
-    const weatherIcons =  ref(WeatherConditionIcons);
+    const weatherData = getWeatherData();  
+    const weatherIcons =  WeatherConditionIcons;
 
     function toMinutes(time) {
       const [hours, minutes] = time.split(':').map(Number);
@@ -27,10 +27,8 @@ export default defineComponent({
 
       <ul class="weather-list unstyled-list">
         <li v-for="item in weatherData"
-          :class="[
-            'weather-card',
-            { 'weather-card--night': !isDaytime(item.current.dt, item.current.sunrise, item.current.sunset) }
-          ]"
+          class="weather-card"
+          :class="{ 'weather-card--night': !isDaytime(item.current.dt, item.current.sunrise, item.current.sunset) }"
         >
           <div v-if="item.alert" class="weather-alert">
             <span class="weather-alert__icon">⚠️</span>
