@@ -1,4 +1,4 @@
-import { defineComponent, ref, watchEffect } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 
 export default defineComponent({
   name: 'CalculatorApp',
@@ -6,14 +6,14 @@ export default defineComponent({
   setup() {
     const firstOperand = ref(0);
     const secondOperand = ref(0);
-    const result = ref(0);
     const selectedOperator = ref('');
 
-    watchEffect(() => {
-      if(selectedOperator.value === "sum") result.value = firstOperand.value + secondOperand.value;
-      if(selectedOperator.value === "subtract") result.value = firstOperand.value - secondOperand.value;
-      if(selectedOperator.value === "multiply") result.value = firstOperand.value * secondOperand.value;
-      if(selectedOperator.value === "divide") result.value = firstOperand.value / secondOperand.value;
+    const result = computed(() => {
+      if(selectedOperator.value === "sum") return firstOperand.value + secondOperand.value;
+      if(selectedOperator.value === "subtract") return firstOperand.value - secondOperand.value;
+      if(selectedOperator.value === "multiply") return firstOperand.value * secondOperand.value;
+      if(selectedOperator.value === "divide") return firstOperand.value / secondOperand.value;
+      else return 0;
     });
 
     return {

@@ -28,15 +28,14 @@ export default defineComponent({
     return {
       decrement,
       increment,
-      props,
     };
   },
 
   template: `
     <div class="counter">
-      <UiButton aria-label="Decrement" :disabled="count <= props.min" @click="decrement">➖</UiButton>
-      <span class="count" data-testid="count">{{ props.count }}</span>
-      <UiButton aria-label="Increment" :disabled="count >= props.max" @click="increment">➕</UiButton>
+      <UiButton aria-label="Decrement" :disabled="count <= min" @click="decrement">➖</UiButton>
+      <span class="count" data-testid="count">{{ count }}</span>
+      <UiButton aria-label="Increment" :disabled="count >= max" @click="increment">➕</UiButton>
     </div>
   `,
 })
