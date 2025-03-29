@@ -12,12 +12,24 @@ export default defineComponent({
   components: {
     UiAlert,
     UiContainer,
+    MeetupCover,
+    MeetupDescription,
+    MeetupAgenda,
+    MeetupInfo,
+  },
+
+  props: {
+    meetup: {
+      type: Object,
+      required: true,
+    }
   },
 
   template: `
     <div>
 
       <!-- Обложка митапа -->
+      <MeetupCover :title="meetup.title" :image="meetup.image" />
 
       <UiContainer>
         <div class="meetup">
@@ -25,17 +37,20 @@ export default defineComponent({
             <h2>Описание</h2>
 
             <!-- Описание митапа -->
+            <MeetupDescription :description="meetup.description" />
 
             <h2>Программа</h2>
 
             <!-- Программа митапа -->
+            <MeetupAgenda v-if="meetup.agenda?.length" :agenda="meetup.agenda" />
             <!-- Или при пустой программе - сообщение "Программа пока пуста..." в UiAlert -->
-            <UiAlert></UiAlert>
+            <UiAlert v-else>Программа пока пуста...</UiAlert>
 
           </div>
           <div class="meetup__aside">
 
             <!-- Краткая информация о митапе -->
+            <MeetupInfo :organizer="meetup.organizer" :place="meetup.place" :date="meetup.date" />
 
             <div class="meetup__aside-buttons"></div>
           </div>
