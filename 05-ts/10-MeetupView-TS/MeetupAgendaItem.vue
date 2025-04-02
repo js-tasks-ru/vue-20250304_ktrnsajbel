@@ -1,15 +1,11 @@
-<script setup>
-// import type { MeetupAgendaItemDTO } from '@shgk/vue-course-ui'
-import { computed } from 'vue'
+<script setup lang="ts">
+import type { MeetupAgendaItemDTO } from '@shgk/vue-course-ui'
+import { computed, defineProps } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
 
-const props = defineProps({
-  agendaItem: {
-    // Настоящий тип - MeetupAgendaItemDTO
-    type: Object,
-    required: true,
-  },
-})
+const props = defineProps<{
+  agendaItem: MeetupAgendaItemDTO,
+}>();
 
 const agendaItemDefaultTitles = {
   registration: 'Регистрация',
@@ -34,10 +30,10 @@ const agendaItemIcons = {
   closing: 'key',
   afterparty: 'cal-sm',
   other: 'cal-sm',
-} // as const
+} as const
 
-const icon = computed(() => agendaItemIcons[props.agendaItem.type])
-const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
+const icon = computed(() => agendaItemIcons[props.agendaItem.type as keyof typeof agendaItemIcons])
+const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type as keyof typeof agendaItemIcons])
 </script>
 
 <template>
