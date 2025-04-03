@@ -1,9 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts" generic="T">
+import { defineModel, defineProps } from 'vue';
+
+type Option = {
+  value: string;
+  text: string;
+};
+
+const modelValue = defineModel<T>({ required: true });
+
+defineProps<{
+  options: Option[],
+}>();
+</script>
 
 <template>
-  <select class="select">
-    <option value="value-1">One</option>
-    <option value="value-2">Two</option>
+  <select v-model="modelValue" class="select">
+    <option v-for="(option, index) in options" :key="index" :value="option.value">
+      {{ option.text}}
+    </option>
   </select>
 </template>
 
