@@ -1,6 +1,4 @@
 <script setup lang="ts" generic="T">
-import { defineModel, defineProps } from 'vue';
-
 type Option = {
   value: string;
   text: string;

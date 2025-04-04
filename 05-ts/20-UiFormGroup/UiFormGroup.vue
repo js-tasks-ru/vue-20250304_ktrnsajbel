@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineSlots } from 'vue';
+import type { Slot } from 'vue'
 
 defineProps<{
   for?: string,
@@ -11,9 +11,9 @@ defineProps<{
 }>()
 
 defineSlots<{
-  default(): void
-  label(): void
-  description(): void
+  default?: Slot,
+  label?: Slot,
+  description?: Slot,
 }>();
 </script>
 
@@ -22,20 +22,20 @@ defineSlots<{
     <div class="form-group__label-wrapper">
       <label :for="$props.for" class="form-group__label">
         <slot name="label">
-          {{ label ? label : 'LABEL'}}
+          {{ label }}
         </slot>
       </label>
       <div class="form-group__description">
         <slot name="description">
-          {{ description ? description : 'DESCRIPTION'}}
+          {{ description }}
         </slot>
       </div>   
     </div>
     <div class="form-group__control">
-      <slot name="default">CONTENT</slot>
+      <slot name="default" />
     </div>
     <div v-if="hint !== undefined" class="form-group__hint" :class="{'form-group__hint--invalid': invalid}">
-      <span v-if="showHint || invalid">{{ hint ? hint : 'HINT' }}</span>
+      <span v-if="showHint || invalid">{{ hint }}</span>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
 
 const agendaItemDefaultTitles = {

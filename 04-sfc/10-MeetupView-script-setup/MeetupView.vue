@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import { UiAlert, UiContainer } from '@shgk/vue-course-ui'
 import MeetupAgenda from './MeetupAgenda.vue'
 import MeetupDescription from './MeetupDescription.vue'
