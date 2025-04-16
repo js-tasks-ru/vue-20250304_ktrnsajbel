@@ -1,34 +1,40 @@
-<script setup>
-// import type { MeetupDTO } from '@shgk/vue-course-ui'
+<script setup lang="ts">
+import type { MeetupDTO } from '@shgk/vue-course-ui'
 import { UiAlert, UiContainer } from '@shgk/vue-course-ui'
 import MeetupAgenda from './MeetupAgenda.vue'
 import MeetupDescription from './MeetupDescription.vue'
 import MeetupCover from './MeetupCover.vue'
 import MeetupInfo from './MeetupInfo.vue'
 
-defineProps({
-  meetup: {
-    // Настоящий тип - MeetupDTO
-    type: Object,
-    required: true,
-  },
-})
+defineProps<{
+  meetup: MeetupDTO,
+}>();
 </script>
 
 <template>
   <div>
+    <!-- Обложка митапа -->
     <MeetupCover :title="meetup.title" :image="meetup.image" />
+
     <UiContainer>
       <div class="meetup">
         <div class="meetup__content">
           <h2>Описание</h2>
+
+          <!-- Описание митапа -->
           <MeetupDescription :description="meetup.description" />
+
           <h2>Программа</h2>
-          <MeetupAgenda v-if="meetup.agenda.length" :agenda="meetup.agenda" />
+
+          <!-- Программа митапа -->
+          <MeetupAgenda v-if="meetup.agenda?.length" :agenda="meetup.agenda" />
+          <!-- Или при пустой программе - сообщение "Программа пока пуста..." в UiAlert -->
           <UiAlert v-else>Программа пока пуста...</UiAlert>
         </div>
         <div class="meetup__aside">
+          <!-- Краткая информация о митапе -->
           <MeetupInfo :organizer="meetup.organizer" :place="meetup.place" :date="meetup.date" />
+
           <div class="meetup__aside-buttons"></div>
         </div>
       </div>
