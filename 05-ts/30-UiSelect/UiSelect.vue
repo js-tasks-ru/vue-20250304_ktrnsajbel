@@ -1,13 +1,13 @@
 <script setup lang="ts" generic="T">
-type Option = {
-  value: string;
+type Option<T> = {
+  value: T;
   text: string;
 };
 
 const modelValue = defineModel<T>({ required: true });
 
 defineProps<{
-  options: Option[],
+  options: Option<T>[],
 }>();
 </script>
 

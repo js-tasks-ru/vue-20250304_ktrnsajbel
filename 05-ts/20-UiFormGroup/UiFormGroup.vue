@@ -32,7 +32,7 @@ defineSlots<{
       </div>   
     </div>
     <div class="form-group__control">
-      <slot name="default" />
+      <slot />
     </div>
     <div v-if="hint !== undefined" class="form-group__hint" :class="{'form-group__hint--invalid': invalid}">
       <span v-if="showHint || invalid">{{ hint }}</span>
